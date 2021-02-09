@@ -19,9 +19,21 @@ async def call_api(msg):
        while websocket.open:
            response = await websocket.recv()
            data = response
-           data = pd.io.json.json_normalize(response)
+           data = json.loads(data)
+           #used_list = [i for i in data['params']]
+           #used_list = pd.DataFrame.from_records(used_list)
+           #data.keys()
+           from pandas.io.json import json_normalize
+           #data_normalized = json_normalize(data)
+           if('result' in data):
+               pass
+           else:
+               data_norm = json_normalize(data['params']['data'])
+               print(data_norm)
+
+           #data = pd.io.json.json_normalize(response, record_path = [['params', 'data']])
+           #data = pd.json_normalize(data)
            #data = pd.DataFrame(data['result']).set_index('instrument_name')
-           print(data)
            print("\n\n")
            # do something with the notifications...
 
