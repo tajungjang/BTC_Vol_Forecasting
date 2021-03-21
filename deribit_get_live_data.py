@@ -29,6 +29,4 @@ async def call_api(msg):
                 print("\n")
                 data_norm.to_csv('trade_logs.csv', header=None, mode='a')
 
-
-
 asyncio.get_event_loop().run_until_complete(call_api(json.dumps(msg)))
